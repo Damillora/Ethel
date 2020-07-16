@@ -16,7 +16,6 @@ client.on('ready', () => {
 client.on('voiceStateUpdate', (oldState,newState) => {
     let oldMember = oldState.member;
     let newMember = newState.member;
-
     if(newMember.user.bot) return;
     let newUserChannel = newState.channel;
     let oldUserChannel = oldState.channel;
@@ -28,7 +27,7 @@ client.on('voiceStateUpdate', (oldState,newState) => {
 
     let guildName = newMember.guild.name;
     
-    if(oldUserChannel === null && newUserChannel !== null) {
+    if(newUserChannel !== null) {
         console.log(newMember.user.tag+": "+newUserChannel.name);
 
         let newUserChannelName = newUserChannel.name;
