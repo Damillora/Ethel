@@ -1,7 +1,7 @@
 # Ethel
 A simple Discord bot that plays music when someone joins a voice channel
 
-Named in honor of Ethel Chamomile, who put this idea forward on [her 16 July 2020 morning stream](https://www.youtube.com/watch?v=4OJLi6M8UqI)
+Named in honor of Ethel Chamomile, who put this idea forward on [her 16 July 2020 morning stream](https://youtu.be/4OJLi6M8UqI?t=3523)
 
 ## Limitations
 
