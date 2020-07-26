@@ -43,13 +43,13 @@ client.on('voiceStateUpdate', (oldState,newState) => {
         if(botUserChannelId !== null && newUserChannel.id !== botUserChannelId) {
             botUserChannel.leave();
         }
-        if(musicStatus[guildName+":"+newUserChannelName]) {
+        if(musicStatus[guildName] === newUserChannelName) {
             return;
         }
 
         // Loop the music
         // Use an object to detect if we have played music or not
-        musicStatus[guildName+":"+newUserChannelName] = true;
+        musicStatus[guildName] = newUserChannelName;
         newUserChannel.join().then(connection => {
             const play = () => {
                 connection
