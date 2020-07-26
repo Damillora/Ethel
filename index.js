@@ -40,6 +40,9 @@ client.on('voiceStateUpdate', (oldState,newState) => {
         if(botUserChannelId !== null && newUserChannel.id !== botUserChannelId) {
             botUserChannel.leave();
         }
+        if(botUserChannelId !== null && newUserChannel.id === botUserChannelId) {
+            return;
+        }
 
         // Loop the music
         newUserChannel.join().then(connection => {
