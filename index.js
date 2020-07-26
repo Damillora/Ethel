@@ -13,6 +13,8 @@ client.on('ready', () => {
   console.log(`Logged in as ${client.user.tag}!`);
 });
 
+var musicStatus = {};
+
 client.on('voiceStateUpdate', (oldState,newState) => {
     let oldMember = oldState.member;
     let newMember = newState.member;
@@ -21,7 +23,8 @@ client.on('voiceStateUpdate', (oldState,newState) => {
     let oldUserChannel = oldState.channel;
 
     // Avoid undefineds
-    let botVoiceState = newMember.guild.voiceState ? newMember.guild.voiceState : null; 
+    let botUserId = newMember.guild.me.id;
+    let botVoiceState = newMember.guild.voiceStates.cache.get(botUserId) ? newMember.guild.voiceStates.cache.get(botUserId) : null; 
     let botUserChannel = botVoiceState ? botVoiceState.channel : null;
     let botUserChannelId = botUserChannel ? botUserChannel.id : null;
 
@@ -40,11 +43,13 @@ client.on('voiceStateUpdate', (oldState,newState) => {
         if(botUserChannelId !== null && newUserChannel.id !== botUserChannelId) {
             botUserChannel.leave();
         }
-        if(botUserChannelId !== null && newUserChannel.id === botUserChannelId) {
+        if(musicStatus[guildName+":"+newUserChannelName]) {
             return;
         }
 
         // Loop the music
+        // Use an object to detect if we have played music or not
+        musicStatus[guildName+":"+newUserChannelName] = true;
         newUserChannel.join().then(connection => {
             const play = () => {
                 connection
