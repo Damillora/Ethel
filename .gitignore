@@ -109,4 +109,4 @@ mapping.json
 
 # Music directory
 music/*
-!music/README
+!music/README.md
