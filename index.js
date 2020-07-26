@@ -21,7 +21,7 @@ client.on('voiceStateUpdate', (oldState,newState) => {
     let oldUserChannel = oldState.channel;
 
     // Avoid undefineds
-    let botVoiceState = newMember.guild.voiceState ?? null;
+    let botVoiceState = newMember.guild.voiceState ? newMember.guild.voiceState : null; 
     let botUserChannel = botVoiceState ? botVoiceState.channel : null;
     let botUserChannelId = botUserChannel ? botUserChannel.id : null;
 
