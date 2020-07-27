@@ -46,7 +46,7 @@ client.on('voiceStateUpdate', (oldState,newState) => {
         if(musicStatus[guildName] === newUserChannelName) {
             return;
         }
-
+        setTimeout( () => {
         // Loop the music
         // Use an object to detect if we have played music or not
         musicStatus[guildName] = newUserChannelName;
@@ -59,6 +59,7 @@ client.on('voiceStateUpdate', (oldState,newState) => {
             console.log("Playing ./music/"+filename);
             play();
         });
+        }, 1000);
     }
 });
 
