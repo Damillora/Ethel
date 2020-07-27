@@ -50,7 +50,7 @@ client.on('voiceStateUpdate', (oldState,newState) => {
         // Loop the music
         // Use an object to detect if we have played music or not
         musicStatus[guildName] = newUserChannelName;
-        const startPlaying  = (connection) => {
+        newUserChannel.join().then(connection => {
             const play = () => {
                 connection
                 .play("./music/"+filename)
@@ -58,12 +58,7 @@ client.on('voiceStateUpdate', (oldState,newState) => {
             };
             console.log("Playing ./music/"+filename);
             play();
-        }
-        const retryJoining = () => {
-           newUserChannel.join().then(startPlaying)
-           .catch(retryJoining);
-        };
-        retryJoining();
+        });
     }
 });
 
